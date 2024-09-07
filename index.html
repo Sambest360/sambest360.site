@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samuel Koranteng Amoah Bampo - Web Developer, Java Programmer, Graphics Designer</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            overflow-x: hidden;
+        }
+        body.light-mode {
+            background-color: #ecf0f1;
+            color: #2c3e50;
+        }
+        header {
+            background: #34495e;
+            color: #fff;
+            text-align: center;
+            padding: 4rem 1rem;
+            position: relative;
+            overflow: hidden;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        }
+        header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 2;
+            animation: colorChange 10s infinite alternate;
+        }
+        @keyframes colorChange {
+            0% { color: #3498db; }
+            25% { color: #2ecc71; }
+            50% { color: #e74c3c; }
+            75% { color: #f39c12; }
+            100% { color: #9b59b6; }
+        }
+        header p {
+            font-size: 1rem;
+            margin-top: 0;
+            position: relative;
+            z-index: 2;
+        }
+        .header-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #3498db, #2ecc71, #e74c3c, #f39c12);
+            background-size: 400% 400%;
+            opacity: 0.1;
+            animation: gradientAnimation 15s ease infinite;
+        }
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .moving-dots {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        .dot {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            animation: moveDot 20s linear infinite;
+        }
+        @keyframes moveDot {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(100vw, 100vh); }
+        }
+        main {
+            padding: 1rem;
+            max-width: 100%;
+            margin: auto;
+        }
+        section {
+            background-color: #34495e;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .light-mode section {
+            background-color: #fff;
+            color: #2c3e50;
+        }
+        section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        h1, h2 {
+            color: #3498db;
+        }
+        .light-mode h1, .light-mode h2 {
+            color: #2980b9;
+        }
+        .skills {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .skill {
+            background-color: #3498db;
+            color: #fff;
+            padding: 0.5rem 1rem;
+            margin: 0.5rem;
+            border-radius: 20px;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            z-index: 1;
+            font-size: 0.9rem;
+        }
+        .light-mode .skill {
+            background-color: #2980b9;
+        }
+        .skill:hover {
+            transform: scale(1.05);
+            background-color: #2980b9;
+        }
+        .light-mode .skill:hover {
+            background-color: #3498db;
+        }
+        .skill-icon {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            opacity: 0.2;
+            pointer-events: none;
+        }
+        #theme-toggle {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background-color: #ecf0f1;
+            color: #2c3e50;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            z-index: 1000;
+            font-size: 0.8rem;
+        }
+        .light-mode #theme-toggle {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+        }
+        #theme-toggle:hover {
+            background-color: #bdc3c7;
+        }
+        .light-mode #theme-toggle:hover {
+            background-color: #34495e;
+        }
+        .skill-image {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 80%;
+            max-height: 80%;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.3);
+            display: none;
+            z-index: 1000;
+        }
+        .floating-icons {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        .floating-icon {
+            position: absolute;
+            opacity: 0.1;
+            animation: floatIcon 20s linear infinite;
+        }
+        @keyframes floatIcon {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(100vw, 100vh) rotate(360deg); }
+        }
+        @media (min-width: 768px) {
+            header h1 {
+                font-size: 3rem;
+            }
+            header p {
+                font-size: 1.2rem;
+            }
+            main {
+                padding: 2rem;
+                max-width: 800px;
+            }
+            section {
+                padding: 1.5rem;
+                margin-bottom: 2rem;
+            }
+            .skill {
+                font-size: 1rem;
+            }
+            #theme-toggle {
+                top: 20px;
+                right: 20px;
+                padding: 10px 20px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-animation"></div>
+        <div class="moving-dots">
+            <div class="dot" style="left: 10%; top: 20%;"></div>
+            <div class="dot" style="left: 30%; top: 50%;"></div>
+            <div class="dot" style="left: 70%; top: 30%;"></div>
+            <div class="dot" style="left: 90%; top: 60%;"></div>
+        </div>
+        <h1>Samuel Koranteng Amoah Bampo</h1>
+        <p>Web Developer | Programmer | Graphics Designer</p>
+    </header>
+    
+    <button id="theme-toggle">Toggle Light Mode</button>
+    
+    <main>
+        <section>
+            <h2>About Me</h2>
+            <p>
+                Samuel Koranteng Amoah Bampo, born on 31 May 2002, is a Ghanaian national currently residing in Johannesburg, South Africa. He is fluent in English and understands abit of IsiXhosa.
+            </p>
+            
+            <p>
+                Samuel is pursuing a Diploma in ICT in Application Development at Walter Sisulu University, East London. Alongside his studies, he has actively participated in various extracurricular activities, including:
+                <ul>
+                    <li>Senior debating</li>
+                    <li>Male netball</li>
+                    <li>Drumming</li>
+                </ul>
+            </p>
+
+            <p>
+                Samuel's achievements include:
+                <ul>
+                    <li>Placing 4th at the Ctrack Sustainable Mobility Hackathon in 2022</li>
+                    <li>Receiving certificates from:
+                        <ul>
+                            <li>Code Academy for JavaScript</li>
+                            <li>Huawei for 5G training</li>
+                            <li>East London IDBZ for game development</li>
+                        </ul>
+                    </li>
+                    <li>Serving as a tutor:
+                        <ul>
+                            <li>Guiding first-year students in Development Software 1 in 2023</li>
+                            <li>Guiding first-year students in Development Software 1 in 2024</li>
+                            <li>Guiding second-year students in Technical Programming 1 in 2024</li>
+                        </ul>
+                    </li>
+                    <li>Currently enrolled in the Samsung Innovation Campus at Walter Sisulu University</li>
+                    <li>High Performance Computing (HPC) Training at CHPC
+                        <ul>
+                            <li>CHPC (CSIR)</li>
+                            <li>Jul 2024 to Jul 2024</li>
+                            <li>Port Elizabeth, Eastern Cape, South Africa · On-site</li>
+                            <li>Participated in the National Integrated Cyber Infrastructure Systems (NICIS) 2024 Student Cluster Competition</li>
+                            <li>Constructed a prototype multi-node compute cluster within the NICIS virtual compute cloud</li>
+                            <li>Acquired Skills:
+                                <ul>
+                                    <li>Cluster Design and Management: Created and oversaw a computing cluster with several nodes</li>
+                                    <li>Linux Systems Administration: Acquired expertise in using Linux debugging and system management tools and commands</li>
+                                    <li>Networking and Remote Access: Configure virtual machines with networking and remote access</li>
+                                    <li>Leadership and Collaboration: Demonstrated strong teamwork skills and mentored colleagues</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+                
+            <p>
+                Samuel possesses a range of technical skills in:
+                <ul>
+                    <li>Microsoft Access</li>
+                    <li>Excel</li>
+                    <li>Visual Basic.net</li>
+                    <li>HTML</li>
+                    <li>CSS</li>
+                    <li>SQL</li>
+                    <li>Python</li>
+                    <li>Java</li>
+                </ul>
+                As well as soft skills such as:
+                <ul>
+                    <li>Teamwork</li>
+                    <li>Adaptability</li>
+                    <li>Strong communication abilities</li>
+                </ul>
+            </p>
+        </section>
+        
+        <section>
+            <h2>Skills</h2>
+            <div class="skills">
+                <span class="skill" data-image="/img/HTML5_logo_and_wordmark.svg.png">HTML5</span>
+                <span class="skill" data-image="/img/CSS3_logo_and_wordmark.svg.png">CSS3</span>
+                <span class="skill" data-image="/img/Unofficial_JavaScript_logo_2.svg.png">JavaScript</span>
+                <span class="skill" data-image="/img/Java_programming_language_logo.svg.png">Java</span>
+                <span class="skill" data-image="/img/vb.png">Visual Basic</span>
+                <span class="skill" data-image="/img/responsive deigns.png">Responsive Design</span>
+                <span class="skill" data-image="/img/UI UX design.jpg">UI/UX Design</span>
+                <span class="skill" data-image="/img/Adobe_Creative_Cloud_rainbow_icon.svg.png">Adobe Creative Suite</span>
+                <span class="skill" data-image="/img/python-logo.png">Python</span>
+                <span class="skill" data-image="/Sql_data_base_with_logo.svg.png">SQL</span>
+            </div>
+        </section>
+        
+        <section>
+            <h2>Services</h2>
+            <ul>
+                <li>Custom Website Development</li>
+                <li>Java Systems Development</li>
+                <li>Logo and Brand Identity Design</li>
+                <li>User Interface and User Experience Design</li>
+                <li>Print and Digital Graphic Design</li>
+            </ul>
+        </section>
+        <section>
+            <h2>Projects</h2>
+            <ul>
+                <li>
+                    <h3>Kwame Bayano Photography and Printing</h3>
+                    <p>Developed an e-commerce site for Kwame Bayano's photography and printing business. The site showcases his work and allows customers to purchase prints and services.</p>
+                    <p><a href="https://sambest360.github.io/KwameBayano/" target="_blank" rel="noopener noreferrer" style="color: #3498db; text-decoration: none; font-weight: bold;">View Project</a> | <a href="https://github.com/Sambest360/KwameBayano" target="_blank" rel="noopener noreferrer" style="color: #3498db; text-decoration: none; font-weight: bold;">GitHub Repo</a></p>
+                </li>
+                <li>
+                    <h3>WSU Market</h3>
+                    <p>Created a platform for small businesses at Walter Sisulu University to promote their services to the campus community. This site helps connect student entrepreneurs with potential customers on campus.</p>
+                    <p><a href="https://sambest360.github.io/WSU_MARKET/" target="_blank" rel="noopener noreferrer" style="color: #3498db; text-decoration: none; font-weight: bold;">View Project</a> | <a href="https://github.com/Sambest360/WSU_MARKET" target="_blank" rel="noopener noreferrer" style="color: #3498db; text-decoration: none; font-weight: bold;">GitHub Repo</a></p>
+                </li>
+            </ul>
+            <p>Check out my <a href="https://github.com/Sambest360" target="_blank" rel="noopener noreferrer" style="color: #3498db; text-decoration: none; font-weight: bold;">GitHub profile</a> for more projects and contributions!</p>
+        </section>
+        
+        <section>
+            <h2>Instagram Feed</h2>
+            <p>Follow me on Instagram for more updates and behind-the-scenes content!</p>
+            <iframe src="https://www.instagram.com/sambest360/embed" width="100%" height="450" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+            <p><a href="https://www.instagram.com/sambest360/" target="_blank" rel="noopener noreferrer" style="color: #3498db; text-decoration: none; font-weight: bold;">Follow @sambest360 on Instagram</a></p>
+        </section>
+        
+        <section>
+            <h2>Contact</h2>
+            <p>Feel free to reach out to me for collaborations or inquiries:</p>
+            <p>Email: sambampo2000@gmail.com</p>
+            <p>Phone: 067 822 4015</p>
+            <p>LinkedIn: <a href="https://www.linkedin.com/in/samuel-koranteng-amoah-bampo-0528ba245/" target="_blank" rel="noopener noreferrer" style="color: #3498db; text-decoration: none; font-weight: bold;">Samuel Koranteng Amoah Bampo</a></p>
+            <p>GitHub: <a href="https://github.com/Sambest360" target="_blank" rel="noopener noreferrer" style="color: #3498db; text-decoration: none; font-weight: bold;">Sambest360</a></p>
+        </section>
+    </main>
+    
+    <footer style="text-align: center; padding: 1rem; background-color: #34495e; color: #ecf0f1;">
+        <p>&copy; 2024 Samuel Koranteng Amoah Bampo. All rights reserved.</p>
+    </footer>
+
+    <img id="skill-image" class="skill-image" src="" alt="Skill Image">
+
+    <div class="floating-icons"></div>
+
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('light-mode');
+            themeToggle.textContent = body.classList.contains('light-mode') ? 'Toggle Dark Mode' : 'Toggle Light Mode';
+        });
+
+        const skills = document.querySelectorAll('.skill');
+        const skillImage = document.getElementById('skill-image');
+        let imageTimeout;
+
+        skills.forEach(skill => {
+            skill.addEventListener('click', () => {
+                skill.style.transform = 'scale(1.1) rotate(5deg)';
+                setTimeout(() => {
+                    skill.style.transform = 'scale(1) rotate(0deg)';
+                }, 300);
+
+                // Show skill image
+                const imageUrl = skill.getAttribute('data-image');
+                if (imageUrl) {
+                    skillImage.src = imageUrl;
+                    skillImage.style.display = 'block';
+
+                    // Clear existing timeout if any
+                    if (imageTimeout) {
+                        clearTimeout(imageTimeout);
+                    }
+
+                    // Set new timeout to hide the image after 2 seconds
+                    imageTimeout = setTimeout(() => {
+                        skillImage.style.display = 'none';
+                    }, 2000);
+                }
+            });
+        });
+
+        // Add floating skill icons
+        const floatingIcons = document.querySelector('.floating-icons');
+        const skillImages = [
+            '/img/HTML5_logo_and_wordmark.svg.png',
+            '/img/CSS3_logo_and_wordmark.svg.png',
+            '/img/Unofficial_JavaScript_logo_2.svg.png',
+            '/img/Java_programming_language_logo.svg.png',
+            '/img/vb.png',
+            '/img/responsive deigns.png',
+            '/img/UI UX design.jpg',
+            '/img/Adobe_Creative_Cloud_rainbow_icon.svg.png',
+            '/img/python-logo.png',
+            '/img/Sql_data_base_with_logo.svg.png'
+        ];
+
+        for (let i = 0; i < 20; i++) {
+            const icon = document.createElement('img');
+            icon.src = skillImages[Math.floor(Math.random() * skillImages.length)];
+            icon.classList.add('floating-icon');
+            icon.style.left = `${Math.random() * 100}vw`;
+            icon.style.top = `${Math.random() * 100}vh`;
+            icon.style.width = `${Math.random() * 30 + 20}px`;
+            icon.style.animationDuration = `${Math.random() * 10 + 10}s`;
+            icon.style.animationDelay = `${Math.random() * 10}s`;
+            floatingIcons.appendChild(icon);
+        }
+    </script>
+</body>
+</html>
