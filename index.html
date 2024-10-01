@@ -256,6 +256,26 @@
                 font-size: 14px;
             }
         }
+        @media (max-width: 768px) {
+            .timeline-item img {
+                width: 100%;
+                height: auto;
+                max-width: none;
+            }
+        }
+        .timeline {
+            list-style-type: none;
+            padding: 0;
+        }
+        .timeline-item {
+            margin-bottom: 20px;
+            border-left: 4px solid #3498db;
+            padding-left: 15px;
+        }
+        .timeline-date {
+            font-size: 1.2em;
+            color: #3498db;
+        }
     </style>
 </head>
 <body>
@@ -293,7 +313,6 @@
             <p>
                 My achievements include:
                 <ul>
-                    <li>Placing 4th at the Ctrack Sustainable Mobility Hackathon in 2022</li>
                     <li>Receiving certificates from:
                         <ul>
                             <li>Code Academy for JavaScript</li>
@@ -349,7 +368,27 @@
                 </ul>
             </p>
         </section>
-        
+
+        <section>
+            <h2>Competition Timeline</h2>
+            <ul class="timeline">
+                <li class="timeline-item">
+                    <strong class="timeline-date">November 2022:</strong> Placed 4th at the Ctrack Sustainable Mobility Hackathon, where I collaborated with a team to develop innovative solutions for sustainable transportation challenges.
+                    <div style="display: flex; justify-content: center;">
+                        <img src="img/Ctrack.jpg" alt="Ctrack Sustainable Mobility Hackathon" style="width:100%; max-width:300px; margin-right: 10px;">
+                        <img src="img/Ctrack certificate.jpg" alt="Ctrack Sustainable Mobility Hackathon" style="width:100%; max-width:300px;">
+                    </div>
+                </li>
+                <li class="timeline-item">
+                    <strong class="timeline-date">July 2024:</strong> Participated in the High Performance Computing (HPC) Training at CHPC (CSIR) in Port Elizabeth, Eastern Cape, South Africa. During this on-site training, I took part in the National Integrated Cyber Infrastructure Systems (NICIS) 2024 Student Cluster Competition, where I constructed a prototype multi-node compute cluster within the NICIS virtual compute cloud.
+                    <img src="IMG/CHPC.jpg" alt="HPC Training" style="width:100%; max-width:600px;">
+                </li>
+                <li class="timeline-item">
+                    <strong class="timeline-date">September 2024:</strong> Took part in the Telkom Hackathon with @geekulcha, @cortexhub, @ilithagaming, and @_she.leads_. It was an unforgettable experience coding through the night, fueled by amazing food and exciting challenges. Proud to represent WSU, our group placed 4th in the competition!
+                    <img src="img/WhatsApp Image 2024-09-29 at 19.14.58_ca717407.jpg" alt="Telkom Hackathon" style="width:100%; max-width:600px;">
+                </li>
+            </ul>
+        </section>
         <section>
             <h2>Skills</h2>
             <div class="skills">
@@ -362,7 +401,7 @@
                 <span class="skill" data-image="/img/UI UX design.jpg">UI/UX Design</span>
                 <span class="skill" data-image="/img/Adobe_Creative_Cloud_rainbow_icon.svg.png">Adobe Creative Suite</span>
                 <span class="skill" data-image="/img/python-logo.png">Python</span>
-                <span class="skill" data-image="/Sql_data_base_with_logo.svg.png">SQL</span>
+                <span class="skill" data-image="/img/Sql_data_base_with_logo.svg.png">SQL</span>
             </div>
         </section>
         
@@ -437,18 +476,15 @@
                     skill.style.transform = 'scale(1) rotate(0deg)';
                 }, 300);
 
-                // Show skill image
                 const imageUrl = skill.getAttribute('data-image');
                 if (imageUrl) {
                     skillImage.src = imageUrl;
                     skillImage.style.display = 'block';
 
-                    // Clear existing timeout if any
                     if (imageTimeout) {
                         clearTimeout(imageTimeout);
                     }
 
-                    // Set new timeout to hide the image after 2 seconds
                     imageTimeout = setTimeout(() => {
                         skillImage.style.display = 'none';
                     }, 2000);
@@ -456,7 +492,6 @@
             });
         });
 
-        // Add floating skill icons
         const floatingIcons = document.querySelector('.floating-icons');
         const skillImages = [
             '/img/HTML5_logo_and_wordmark.svg.png',
